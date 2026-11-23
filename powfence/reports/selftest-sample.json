@@ -1,0 +1,104 @@
+{
+  "leakage_profile": {
+    "BaselineW": 120,
+    "Bit1DeltaW": 1.5,
+    "OpSeconds": 0.01,
+    "BaselineMHz": 2800,
+    "Bit1DeltaMHz": 3,
+    "TickInterval": 100000000,
+    "AmbientEnergySigmaJ": 0.01,
+    "AmbientFreqSigmaMHz": 1,
+    "CPUs": 8
+  },
+  "observers": [
+    {
+      "observer": "raw_unsanitized_tick_level",
+      "attack_statistics": [
+        {
+          "feature": "energy_joules",
+          "samples_per_class": 250,
+          "welch_t": -15.149507720577724,
+          "d_prime": 1.355013163554787,
+          "classifier_auc": 0.83096,
+          "auc_significant": true
+        },
+        {
+          "feature": "frequency_mhz",
+          "samples_per_class": 250,
+          "welch_t": -32.55747154975266,
+          "d_prime": 2.912028782430495,
+          "classifier_auc": 0.97608,
+          "auc_significant": true
+        }
+      ],
+      "utility": null,
+      "exploitable_channel": false
+    },
+    {
+      "observer": "standard",
+      "attack_statistics": [
+        {
+          "feature": "energy_joules",
+          "samples_per_class": 250,
+          "welch_t": 0.9725158669050097,
+          "d_prime": 0.08698446350386958,
+          "classifier_auc": 0.489416,
+          "auc_significant": false
+        },
+        {
+          "feature": "frequency_mhz",
+          "samples_per_class": 250,
+          "welch_t": -1.1084468895735067,
+          "d_prime": 0.09914250378138255,
+          "classifier_auc": 0.537144,
+          "auc_significant": false
+        }
+      ],
+      "utility": [
+        {
+          "feature": "energy_joules",
+          "rolling_mean_abs_error_pct": 0.3575852077899082,
+          "rolling_rmse": 0.5718165518045882,
+          "single_window_error_pct": 0.799938060319755,
+          "mean_epsilon_per_release": 0.09997222993612823,
+          "rolling_average_windows": 6
+        },
+        {
+          "feature": "frequency_mhz",
+          "rolling_mean_abs_error_pct": 0.30354056387191547,
+          "rolling_rmse": 10.800178386009271,
+          "single_window_error_pct": 0.6549657870061428,
+          "mean_epsilon_per_release": 0.09997222993612823,
+          "rolling_average_windows": 6
+        }
+      ],
+      "exploitable_channel": false
+    },
+    {
+      "observer": "strict",
+      "attack_statistics": [
+        {
+          "feature": "energy_joules",
+          "samples_per_class": 50,
+          "welch_t": 1.1355907480151846,
+          "d_prime": 0.22711814960303695,
+          "classifier_auc": 0.4682,
+          "auc_significant": false
+        }
+      ],
+      "utility": [
+        {
+          "feature": "energy_joules",
+          "rolling_mean_abs_error_pct": 0.72273259046502,
+          "rolling_rmse": 5.541286023855041,
+          "single_window_error_pct": 1.4903509124348235,
+          "mean_epsilon_per_release": 0.005000000000000004,
+          "rolling_average_windows": 6
+        }
+      ],
+      "exploitable_channel": false
+    }
+  ],
+  "passed": true,
+  "failures": null
+}

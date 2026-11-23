@@ -1,0 +1,44 @@
+{
+  "listen": {
+    "transport": "tcp",
+    "address": "127.0.0.1:9100"
+  },
+  "source": "mock",
+  "audit_path": "",
+  "policies": {
+    "standard": {
+      "name": "standard",
+      "epoch_seconds": 3600,
+      "epoch_budget_epsilon": 360.0,
+      "rate_per_second": 2,
+      "burst": 2,
+      "energy": {
+        "enabled": true,
+        "scope": "package",
+        "window_seconds": 1,
+        "quantize_joules": 0.5,
+        "dp_mode": "signal_bounded",
+        "signal_max_delta_joules": 0.05,
+        "envelope_watts": 250,
+        "budget_share": 0.5
+      },
+      "frequency": {
+        "enabled": true,
+        "window_seconds": 1,
+        "quantize_mhz": 25,
+        "dp_mode": "signal_bounded",
+        "signal_max_delta_mhz": 1,
+        "envelope_mhz": 3500,
+        "nominal_mhz": 2500,
+        "max_mhz": 3500,
+        "budget_share": 0.5
+      }
+    }
+  },
+  "tenants": {
+    "demo-token-0123456789abcdef0123456789": {
+      "policy": "standard",
+      "label": "local-demo"
+    }
+  }
+}

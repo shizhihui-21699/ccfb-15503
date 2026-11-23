@@ -1,0 +1,77 @@
+{
+  "listen": {
+    "transport": "unix",
+    "address": "/run/powfence/powfence.sock"
+  },
+  "source": "rapl",
+  "audit_path": "/var/log/powfence/audit.jsonl",
+  "policies": {
+    "standard": {
+      "name": "standard",
+      "epoch_seconds": 3600,
+      "epoch_budget_epsilon": 360.0,
+      "rate_per_second": 2,
+      "burst": 2,
+      "energy": {
+        "enabled": true,
+        "scope": "package",
+        "window_seconds": 1,
+        "quantize_joules": 0.5,
+        "dp_mode": "signal_bounded",
+        "signal_max_delta_joules": 0.05,
+        "envelope_watts": 250,
+        "budget_share": 0.5
+      },
+      "frequency": {
+        "enabled": true,
+        "window_seconds": 1,
+        "quantize_mhz": 25,
+        "dp_mode": "signal_bounded",
+        "signal_max_delta_mhz": 1,
+        "envelope_mhz": 3500,
+        "nominal_mhz": 2500,
+        "max_mhz": 3500,
+        "budget_share": 0.5
+      }
+    },
+    "strict": {
+      "name": "strict",
+      "epoch_seconds": 3600,
+      "epoch_budget_epsilon": 7.21,
+      "rate_per_second": 1,
+      "burst": 1,
+      "energy": {
+        "enabled": true,
+        "scope": "host",
+        "window_seconds": 5,
+        "quantize_joules": 2,
+        "dp_mode": "signal_bounded",
+        "signal_max_delta_joules": 0.05,
+        "envelope_watts": 250,
+        "budget_share": 1,
+        "release_epsilon": 0.005
+      },
+      "frequency": {
+        "enabled": true,
+        "expose_nominal_only": true,
+        "window_seconds": 5,
+        "quantize_mhz": 50,
+        "dp_mode": "signal_bounded",
+        "signal_max_delta_mhz": 3,
+        "envelope_mhz": 3500,
+        "nominal_mhz": 2500,
+        "max_mhz": 3500
+      }
+    }
+  },
+  "tenants": {
+    "REPLACE_WITH_32_BYTE_RANDOM_TOKEN_MONITORING": {
+      "policy": "standard",
+      "label": "monitoring-tenant-a"
+    },
+    "REPLACE_WITH_32_BYTE_RANDOM_TOKEN_HIGHASSURANCE": {
+      "policy": "strict",
+      "label": "hsm-workload-tenant-b"
+    }
+  }
+}

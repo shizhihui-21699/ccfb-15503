@@ -1,0 +1,6 @@
+/bin/
+*.test
+*.out
+powfence
+powfence-selftest
+powfence-attackcheck
